@@ -1,110 +1,157 @@
-# 🐍 Systemövervakningsapplikation i Python
+# 🐍 System Monitoring Application in Python
 
-> Ett terminalbaserat verktyg för att övervaka CPU-, minnes- och diskanvändning – byggt med objektorienterad Python och DevOps-inspirerad arkitektur.
+> A terminal-based tool to monitor CPU, memory, and disk usage – built with object-oriented Python and a DevOps-inspired architecture.
 
 ---
 
-## 👤 Projektinformation
-**Namn:** Sam Jaudat  
-**Klass:** DOE25 (Chas Academy)  
-**Datum:** 24 oktober 2025  
+## 👤 Project Information
+**Name:** Sam Jaudat  
+**Class:** DOE25 (Chas Academy)  
+**Date:** October 24, 2025  
 **GitHub:** [chakoch/python-final](https://github.com/chakoch/python-final)
 
 ---
 
-## 📘 1. Inledning
-Applikationen visar aktuell CPU-, minnes- och diskanvändning direkt i terminalen.  
-Programmet kan starta/stoppa övervakning, skapa och ta bort larm, samt köra ett automatiskt övervakningsläge där larm triggas om resursanvändningen överskrider angivna gränser.  
-Syftet är att demonstrera objektorienterad programmering, filhantering och felhantering i Python – tillämpat på ett mindre men strukturerat DevOps-verktyg.
+## 🎓 Chas Academy Python Final Project
+**Monitoring CPU / Memory / Disk Application**
 
 ---
 
-## 🧩 2. Planering och design
-Projektet är baserat på **CRUD-principen** (Create, Read, Update, Delete) för att skapa en tydlig och verklighetsnära struktur, likt hur resurser hanteras i DevOps-flöden via API:er.  
-Detta gjorde logiken enkel att följa och varje klass fick ett tydligt ansvar inom helheten.
+### 🐧 Setup for Linux / macOS
+
+**Create a virtual environment:**
+```bash
+python3 -m venv venv
+```
+
+**Activate the environment:**
+```bash
+source venv/bin/activate
+```
+
+**Install required packages:**
+```bash
+pip install -r requirements.txt
+```
+
+**Run the program:**
+```bash
+python main.py
+```
 
 ---
 
-## 🏗️ 3. Programstruktur
+### 🪟 Setup for Windows
 
-| Fil | Syfte |
-|------|-------|
-| `main.py` | Huvudmeny och programflöde |
-| `monitor.py` | Hämtar systemdata via `psutil` |
-| `alarm.py` | Hanterar skapande och kontroll av larm |
-| `storage.py` | Sparar och laddar larm från JSON-fil |
-| `logger.py` | Loggar händelser i programmet |
-| `helpers.py` | Samlar återanvändbara funktioner (DRY-principen) |
-| `constants.py` | Centrala konstanter för att undvika duplicering |
+**Create a virtual environment:**
+```bash
+python -m venv venv
+```
 
-Kommunikationen sker via objekt som skickas mellan modulerna (t.ex. `AlarmManager`, `SystemMonitor`, `Logger`, `AlarmStorage`).
+**Activate the environment:**
+```bash
+venv\Scripts\activate
+```
 
----
+**Install required packages:**
+```bash
+pip install -r requirements.txt
+```
 
-## ⚙️ 4. Viktiga funktioner och klasser
-
-1. **`SystemMonitor.get_current_stats()`** – Hämtar CPU, RAM och diskdata via `psutil`.  
-2. **`AlarmManager.check_alarms(stats)`** – Jämför realtidsdata mot tröskelvärden och triggar larm.  
-3. **`helpers.py`** – Innehåller generella funktioner (`print_section()`, `format_stats()`, `get_int_input()` m.fl.) enligt **DRY-principen**.
-
----
-
-## 🧰 5. Bibliotek och verktyg
-
-| Bibliotek | Användning |
-|------------|------------|
-| `psutil` | Systemstatistik (CPU, minne, disk) |
-| `os` | Filhantering och terminalrensning |
-| `json` | Spara/läsa larm till/från fil |
-| `sys`, `tty`, `termios`, `msvcrt` | Tangenttryckningar utan Enter |
-| `time` | Loopar och pauser i övervakningsläge |
-
-Versionshantering sker via **Git och GitHub**.
+**Run the program:**
+```bash
+python main.py
+```
 
 ---
 
-## 🧪 6. Testning och felsökning
-- Varje menyval testades manuellt.  
-- Larmtriggers verifierades med olika tröskelvärden.  
-- Felinmatning hanteras med `try/except`.  
-- JSON-filen testades vid både tillägg och borttagning.  
-
-### Identifierade och lösta buggar:
-1. **Logger-attribut:** fel namn → fixat till `self.log_file`.  
-2. **Boolean-anrop:** `is_monitoring()` → ändrat till korrekt variabel.  
-3. **MacOS-problem:** `psutil` krävde virtuell miljö (`venv`).  
-4. **UX-bugg:** `wait_for_key()` omskriven för plattformsstöd (Windows/macOS/Linux).
-
-Resultatet blev stabil körning och renare kod genom refaktorering och DRY-principer.
+## 📘 1. Introduction
+This application displays real-time CPU, memory, and disk usage directly in the terminal.  
+It allows users to start or stop monitoring, create and delete alarms, and run an automated monitoring mode that triggers alerts when resource usage exceeds defined thresholds.  
+The goal is to demonstrate object-oriented programming, file handling, and exception management in Python – applied in a small but structured DevOps-inspired utility.
 
 ---
 
-## 🧾 7. Resultat
-✅ Övervakning kan startas och stoppas  
-✅ Larm kan skapas, listas, tas bort och triggas  
-✅ Data lagras permanent i JSON-fil  
-✅ Konsistent och användarvänlig terminalvy  
+## 🧩 2. Planning and Design
+The project follows the **CRUD principle** (Create, Read, Update, Delete) to maintain a clear and realistic structure, similar to how resources are managed through APIs in DevOps workflows.  
+This approach made the logic easy to follow, with each class having a well-defined responsibility within the overall architecture.
 
 ---
 
-## 💭 8. Reflektion och lärdomar
-Jag har utvecklat min förståelse för **objektorientering**, **modulär design** och **underhållbar kod**.  
-Tydlig ansvarsdelning, konsekvent namngivning och återanvändbara funktioner gjorde projektet mer robust och lätt att utöka.
+## 🏗️ 3. Program Structure
+
+| File | Purpose |
+|------|----------|
+| `main.py` | Main menu and program flow |
+| `monitor.py` | Retrieves system data using `psutil` |
+| `alarm.py` | Handles creation and control of alarms |
+| `storage.py` | Saves and loads alarms from JSON file |
+| `logger.py` | Logs program events |
+| `helpers.py` | Contains reusable helper functions (DRY principle) |
+| `constants.py` | Stores constants to prevent data duplication |
+
+Communication between modules occurs through objects passed as arguments (e.g., `AlarmManager`, `SystemMonitor`, `Logger`, `AlarmStorage`).
 
 ---
 
-## 🚀 9. Vidareutveckling
-Möjliga förbättringar:
-- 📬 Skicka notifieringar (e-post/Slack) vid larm.  
-- 🧩 Enhetstester med `pytest`.  
-- 🕓 Utöka loggern med tidsstämplar och loggnivåer.
+## ⚙️ 4. Key Functions and Classes
+
+1. **`SystemMonitor.get_current_stats()`** – Returns real-time CPU, RAM, and disk usage using `psutil`.  
+2. **`AlarmManager.check_alarms(stats)`** – Compares live stats with thresholds and triggers alarms if limits are exceeded.  
+3. **`helpers.py`** – Contains shared utility functions (`print_section()`, `format_stats()`, `get_int_input()` etc.) following the **DRY principle**.
 
 ---
 
-## 🧠 10. Sammanfattning
-Projektet visar hur Python kan användas för att skapa en robust, väldesignad och modulär systemövervakningslösning.  
-Jag har implementerat OOP, JSON-lagring, felhantering, DRY-principen och Git-baserad versionshantering – vilket resulterar i ett portabelt, lättunderhållet och DevOps-inspirerat verktyg.
+## 🧰 5. Libraries and Tools
+
+| Library | Usage |
+|----------|-------|
+| `psutil` | Retrieves system statistics (CPU, memory, disk) |
+| `os` | File handling and terminal operations |
+| `json` | Saves and loads alarms from file |
+| `sys`, `tty`, `termios`, `msvcrt` | Handles key presses without requiring Enter |
+| `time` | Loops and pauses in monitoring mode |
+
+Version control handled via **Git and GitHub**.
 
 ---
 
-📎 **Repo:** [https://github.com/chakoch/python-final](https://github.com/chakoch/python-final)
+## 🧪 6. Testing and Debugging
+- Each menu option was tested manually.  
+- Alarm triggers were validated using various threshold values.  
+- Input errors are handled with `try/except`.  
+- The JSON file was tested for both adding and deleting alarms.  
+
+### Identified and Fixed Bugs:
+1. **Logger attribute:** incorrect attribute name fixed to `self.log_file`.  
+2. **Boolean call:** `is_monitoring()` changed to variable reference.  
+3. **macOS issue:** `psutil` installation required a proper virtual environment (`venv`).  
+4. **UX improvement:** `wait_for_key()` rewritten for cross-platform compatibility (Windows/macOS/Linux).
+
+After these fixes, the program ran stably across environments, with cleaner, more modular code following DRY principles.
+
+---
+
+## 🧾 7. Results
+✅ Monitoring can be started and stopped  
+✅ Alarms can be created, listed, deleted, and triggered  
+✅ Data is stored persistently in a JSON file  
+✅ Interface is consistent and user-friendly  
+
+---
+
+## 🚀 8. Future Improvements
+Possible enhancements:
+- 📬 Add email or Slack notifications when alarms trigger  
+- 🧩 Implement unit tests using `pytest`  
+- 🕓 Extend the logger with timestamps and log levels  
+
+---
+
+## 🧠 9. Summary
+The project demonstrates how Python can be used to build a robust, modular, and well-structured system monitoring tool.  
+It applies OOP, JSON storage, exception handling, the DRY principle, and Git-based version control – resulting in a portable, maintainable, and DevOps-inspired application.
+
+---
+
+📎 **Repository:** [https://github.com/chakoch/python-final](https://github.com/chakoch/python-final)

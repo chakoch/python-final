@@ -1,8 +1,3 @@
-Rapport – Systemutveckling i Python
-Namn: Sam Jaudat
-Klass: DOE25 (Chas Academy)
-Datum: 24 oktober 2025
-GitHub-länk: https://github.com/chakoch/python-final.git
 
 1. Inledning
 I detta projekt har jag utvecklat en övervakningsapplikation i Python som visar aktuell CPU-, minnes- och diskanvändning direkt i terminalen.

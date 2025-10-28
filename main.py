@@ -33,7 +33,7 @@ def show_main_menu():
     print("0. Avsluta programmet")
     print_separator()
 
-
+# Startar övervakningen om den inte redan är aktiv
 def start_monitoring(monitor, logger):
     show_screen_with_header("STARTA ÖVERVAKNING")
 
@@ -46,7 +46,7 @@ def start_monitoring(monitor, logger):
     
     wait_for_key()
 
-
+# Visar aktuell övervakningsstatus
 def list_monitoring_status(monitor):
     show_screen_with_header("ÖVERVAKNINGSSTATUS")
     
@@ -74,7 +74,7 @@ def list_monitoring_status(monitor):
     print_separator()
     wait_for_key()
 
-
+# Meny för att skapa nya larm
 def create_alarm_menu(alarm_manager, logger):
 
     while True:
@@ -115,7 +115,7 @@ def create_single_alarm(alarm_manager, logger, alarm_type, alarm_type_swedish):
         wait_for_key()
         return False
 
-
+# Visar alla konfigurerade larm
 def show_alarms(alarm_manager):
     show_screen_with_header("KONFIGURERADE LARM")
     
@@ -131,7 +131,7 @@ def show_alarms(alarm_manager):
     print_separator()
     wait_for_key()
 
-
+# Meny för att ta bort befintliga larm
 def remove_alarm_menu(alarm_manager, logger):
     show_screen_with_header("TA BORT LARM")
     
@@ -155,7 +155,7 @@ def remove_alarm_menu(alarm_manager, logger):
     
     wait_for_key()
 
-
+# Visar listan över larm med numrering
 def display_alarm_list(alarms):
 
     for index, alarm in enumerate(alarms, 1):
@@ -181,7 +181,7 @@ def handle_alarm_removal(alarms, alarm_manager, logger):
     except ValueError:
         print("\n✗ Felaktig input!")
 
-
+# Startar övervakningsläget
 def monitoring_mode(monitor, alarm_manager, logger):
     show_screen_with_header("ÖVERVAKNINGSLÄGE")
     print("\nÖvervakningsläge startat!")
@@ -267,7 +267,7 @@ def handle_menu_choice(menu_choice, monitor, alarm_manager, logger):
     
     return True
 
-
+# Huvudfunktionen som startar programmet
 def main():
     # Initiera komponenter
     logger, storage, alarm_manager, monitor = initialize_components()

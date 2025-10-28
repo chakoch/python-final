@@ -1,12 +1,12 @@
 class Alarm:
-
+    
     def __init__(self, alarm_type, threshold):
         self.alarm_type = alarm_type
         self.threshold = threshold
         self.triggered = False
 
     # Kontrollerar om larmet ska triggas baserat på aktuellt värde
-    def check(self, current_value):
+    def check_trigger(self, current_value):
 
         if current_value >= self.threshold and not self.triggered:
             self.triggered = True
@@ -14,10 +14,9 @@ class Alarm:
         elif current_value < self.threshold:
             self.triggered = False
         return False
-    
-    # Konverterar larm till dictionary för JSON-lagring
-    def to_dict(self):
 
+    # Konverterar larm från objekt till dictionary för JSON-lagring
+    def to_dict(self):
         return {
             'type': self.alarm_type,
             'threshold': self.threshold
@@ -36,29 +35,35 @@ class AlarmManager:
         self.storage = storage
         self.last_triggered = {}
 
+    # Lägger till ett nytt larm
     def add_alarm(self, alarm_type, threshold):
 
         alarm = Alarm(alarm_type, threshold)
         self.alarms.append(alarm)
         self.save_alarms()
 
+    # Tar bort ett larm
     def remove_alarm(self, alarm):
 
         if alarm in self.alarms:
             self.alarms.remove(alarm)
             self.save_alarms()
 
+    # Hämtar alla larm
     def get_all_alarms(self):
         return self.alarms
-    
+
+    # Hämtar alla larm sorterade efter typ
     def get_sorted_alarms(self):
         return sorted(self.alarms, key=lambda alarm: alarm.alarm_type)
     
+    # Hämtar larm av en specifik typ, sorterade efter tröskelvärde
     def get_alarms_by_type(self, alarm_type):
 
         filtered = filter(lambda alarm: alarm.alarm_type == alarm_type, self.alarms)
         return sorted(filtered, key=lambda alarm: alarm.threshold, reverse=True)
     
+    # Kontrollerar aktuella systemstatistik mot larmen
     def check_alarms(self, stats):
         
         triggered = []
@@ -97,9 +102,11 @@ class AlarmManager:
         
         return triggered
     
+    # Sparar larmen
     def save_alarms(self):
         self.storage.save_alarms(self.alarms)
 
+    # Laddar upp larmen
     def load_alarms(self):
         self.alarms = self.storage.load_alarms()
         

@@ -14,6 +14,7 @@ class SystemMonitor:
     def get_cpu_usage(self):
         return psutil.cpu_percent(interval=1)
     
+    # Hämtar minnes användning
     def get_memory_usage(self):
 
         memory = psutil.virtual_memory()
@@ -23,6 +24,7 @@ class SystemMonitor:
             'percent': memory.percent
         }
     
+    # Hämtar disk användning
     def get_disk_usage(self):
 
         disk = psutil.disk_usage('/')
@@ -31,7 +33,7 @@ class SystemMonitor:
             'used': disk.used / (1024 ** 3),      # GB
             'percent': disk.percent
         }
-    
+    # Hämtar aktuell systemstatistik
     def get_current_stats(self):
 
         memory = self.get_memory_usage()

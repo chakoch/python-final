@@ -3,7 +3,7 @@ import os
 import sys
 from constants import SEPARATOR_LENGTH, SEPARATOR_CHAR
 
-
+# Väntar på att användaren trycker på en valfri tangent
 def wait_for_key():
     print("\nTryck valfri tangent för att gå tillbaka till huvudmeny...")
     
@@ -23,21 +23,21 @@ def wait_for_key():
         import msvcrt
         msvcrt.getch()
 
-
+# Rensar terminalskärmen
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-
+# Skriver ut en separatorlinje
 def print_separator():
     print(SEPARATOR_CHAR * SEPARATOR_LENGTH)
 
-
+# Skriver ut en rubrik med separatorlinjer ovanför och under
 def print_header(title):
     print("\n" + SEPARATOR_CHAR * SEPARATOR_LENGTH)
     print(f"  {title}")
     print(SEPARATOR_CHAR * SEPARATOR_LENGTH)
 
-
+# Visar en skärm med rubrik
 def show_screen_with_header(title):
     clear_screen()
     print_header(title)
